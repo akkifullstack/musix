@@ -29,8 +29,10 @@
               <input class="form-control" name="lyrics" id="lyrics-input" type="text">
             </div>
             <button class="btn btn-default" id="search-button" type="submit">Submit</button><br/>
-            <p>Artist name :  </p>
+            
         </form>
+        <p>Artist name :  </p>
+        <p id="art"></p>
 
     </div>
 
@@ -53,10 +55,10 @@
                 contentType:'application/json',
                 success:function(artist){
                     // console.log(artist.message.body)
-                    // console.log(artist.message.body.track_list[0].track.artist_name)
-                    var artistname = document.createElement("p");  // Create with DOM
+                    console.log(artist.message.body.track_list[0].track.artist_name)
+                    
+                    var artistname = document.getElementById("art");  // Create with DOM
                     artistname.innerHTML = artist.message.body.track_list[0].track.artist_name;
-                    $("p").append(artistname); 
              }
             })
         })
