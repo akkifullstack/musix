@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous">
+  <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div id=searchContainer class=col-lg-12>
+
+        <form role="form">
+            <div class="form-group">
+              <label for="lyrics-input">Enter Lyrics</label>
+              <input class="form-control" name="lyrics" id="lyrics-input" type="text">
+            </div>
+            <button class="btn btn-default" id="search-button" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+    <script>
+        $("#search-button").click(function(res){
+            event.preventDefault();
+            var lyrics = $("#lyrics-input").val().trim();
+            var s1="http://api.musixmatch.com/ws/1.1/";
+			var s2="ab6018d2a0d1bbeef89eaa602857cdd8";
+			var s4=s1.concat(s2)
+			$.ajax({url:s4,
+            q_lyrics:lyrics,
+            xhrFields: {
+            withCredentials: true
+            },
+            headers:{
+                'Origin':'http://api.musixmatch.com'
+            },
+            crossDomain:true,
+            dataType:'xml',
+            async:false
+            })
+        })
+    </script>
+    <!-- <script>
+
+
+ 
+        var lyrics = "";
+        $("#search-button").on("click", function(event) {
+            event.preventDefault();
+            var lyrics = $("#lyrics-input").val().trim();
+            console.log(lyrics);
+            $.get("http://api.musixmatch.com/ws/1.1/", 
+            {
+            apikey: "0b1d4ec899378cab1297ccabe9bbd864",
+            q_lyrics: lyrics,
+            crossDomain:true,
+            header:{
+                
+                'Content-Type':'application/json',
+                'Accept' : 'application/json'
+            }     
+            }, function (data) {
+            console.log(data);
+            });
+        });
+    </script> -->
+
+  </body>
+
+</html>
+
+
